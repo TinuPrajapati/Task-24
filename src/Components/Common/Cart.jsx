@@ -1,11 +1,23 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useItem } from "../../Context/ItemContext";
 import Button from "./Button";
 
 function Cart() {
+  const [style, setStyle] = useState(false);
+  const [style2, setStyle2] = useState(true);
+  const { item, price } = useItem();
+  const location = useLocation();
 
-  const {item,price} = useItem();
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setStyle(true);
+      setStyle2(false);
+    } else {
+      setStyle(false);
+      setStyle2(true);
+    }
+  }, [location.pathname]);
 
   return (
     <div className="w-[40%] flex flex-col gap-4">
@@ -25,7 +37,7 @@ function Cart() {
             </div>
 
             {/* Button div */}
-            <Button el={item}/>
+            <Button el={item} />
           </div>
         ))}
       </div>
@@ -33,11 +45,19 @@ function Cart() {
         <p>
           <span className="font-serif">Total :</span> ${price}
         </p>
+        {item.length > 0 && (
+          <Link
+            to="/payment"
+            className={`py-2 px-4 ${style ? "block" : "hidden"} border-2 rounded-lg hover:bg-white hover:text-sky-500 shadow-xl active:scale-95`}
+          >
+            Proceed to Payment
+          </Link>
+        )}
         <Link
-          to="/payment"
-          className="py-2 px-4 border-2 rounded-lg hover:bg-white hover:text-sky-500 shadow-xl active:scale-95"
+          to="/"
+          className={`  ${style2 ? "block" : "hidden"} py-2 px-4 border-2 rounded-lg hover:bg-white hover:text-sky-500 shadow-xl active:scale-95`}
         >
-          Proceed to Payment
+          Go back to Shopping
         </Link>
       </div>
     </div>
