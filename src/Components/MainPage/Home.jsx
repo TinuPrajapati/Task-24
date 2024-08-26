@@ -12,8 +12,9 @@ import {
   Shoes10,
 } from "../../assets";
 import ShoesItem from "./ShoesItem";
-import Cart from "./Cart";
-import { useItem } from "../../Context/ItemContext";
+import Cart from "../Common/Cart";
+
+
 
 function Home() {
   const shoes = [

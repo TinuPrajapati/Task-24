@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
 export default function Button({ el }) {
-  const [updatedEl, setUpdatedEl] = useState(el);
   const context = useOutletContext();
 
   const add = () => {

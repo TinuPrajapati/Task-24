@@ -1,6 +1,8 @@
 import React from "react";
 import PaymentOption from "./PaymentOption";
-import Cart from "./Cart";
+import Cart from "../Common/Cart";
+
+// import Cart from "./Cart";
 
 function Payment() {
   return (
